@@ -21,7 +21,7 @@ import org.python.util.PythonInterpreter;
  * @author mmain
  */
 public class ScriptEngine {
-    private static PyStringMap functionTable;
+    private static PyStringMap namespace;
     private static Queue<Command> commands;
     private static String next;
     private static ScriptState state;
@@ -63,11 +63,11 @@ public class ScriptEngine {
         pi.execfile("lon.pyst");
         
         // Run inject
-        pi.exec("ScriptEngine.inject(globals())");
+        pi.exec("setup(globals())");
     }
     
     public static void inject(PyStringMap functionTable) {
-        ScriptEngine.functionTable = functionTable;
+        ScriptEngine.namespace = functionTable;
     }
     
     public static void addCommand(String command, PyTuple args) {
@@ -102,8 +102,8 @@ public class ScriptEngine {
     
     public static boolean run(String function) {
         PyString s = new PyString(function);
-        if (functionTable.has_key(s)) {
-            PyFunction f = (PyFunction)functionTable.get(s);
+        if (namespace.has_key(s)) {
+            PyFunction f = (PyFunction)namespace.get(s);
             next = ((PyString)f.__call__()).toString();
         } else {
             return false;
@@ -122,6 +122,10 @@ public class ScriptEngine {
     
     public static String getNext() {
         return next;
+    }
+    
+    public static PyStringMap getNamespace() {
+        return namespace;
     }
     
     public static boolean isPaused() {

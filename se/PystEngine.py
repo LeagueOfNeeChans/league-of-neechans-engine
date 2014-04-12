@@ -1,4 +1,18 @@
 from com.trinary.vnjy.se import ScriptEngine
+# import re
+
+def format(string):
+	'''
+	namespace = ScriptEngine.getNamespace()
+	for item in re.findall(r'#\{([^{]*)\}', string):
+		string = string.replace('#{%s}' % item,
+			str(eval(item, namespace)))
+	'''
+			
+	return string
+
+def setup(ns):
+	ScriptEngine.inject(ns)
 
 class Actor:
 	def __init__(self, name):
@@ -27,7 +41,7 @@ class Actor:
 		return item in self.inventory
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("say", (self.name, dialogue))
+		ScriptEngine.addCommand("say", (self.name, format(dialogue)))
 
 	def change(self, mood):
 		ScriptEngine.addCommand("change", (self.name, mood))
@@ -44,7 +58,7 @@ class Narrator(Actor):
 		self.inventory = []
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("nsay", (dialogue, ""))
+		ScriptEngine.addCommand("nsay", (format(dialogue), ""))
 	
 class Scene:
 	def __init__(self):
