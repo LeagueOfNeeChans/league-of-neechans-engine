@@ -24,7 +24,7 @@ class Actor:
 		self.inventory.append(name)
 		
 	def is_set(self, switch):
-		return switch in switches
+		return switch in self.switches
 		
 	def has(self, item):
 		return item in self.inventory
