@@ -54,8 +54,6 @@ public class Application {
                 
                 ScriptEngine.choose(choices.get(choice - 1));
             }
-            
-            System.out.println(ScriptEngine.getNext());
         }
     }
 }

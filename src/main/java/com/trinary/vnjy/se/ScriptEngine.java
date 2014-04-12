@@ -87,7 +87,6 @@ public class ScriptEngine {
     }
     
     public static void choose(Choice choice) {
-        System.out.println("YOU CHOSE " + choice.getNext());
         next = choice.getNext();
         state = ScriptState.STARTED;
     }
