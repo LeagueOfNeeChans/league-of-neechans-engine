@@ -1,15 +1,4 @@
-from com.trinary.vnjy.se import ScriptEngine
-# import re
-
-def format(string):
-	'''
-	namespace = ScriptEngine.getNamespace()
-	for item in re.findall(r'#\{([^{]*)\}', string):
-		string = string.replace('#{%s}' % item,
-			str(eval(item, namespace)))
-	'''
-			
-	return string
+from com.trinary.vnjy.se import ScriptEngine, StringFormatter
 
 def setup(ns):
 	ScriptEngine.inject(ns)
@@ -41,7 +30,7 @@ class Actor:
 		return item in self.inventory
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("say", (self.name, format(dialogue)))
+		ScriptEngine.addCommand("say", (self.name, StringFormatter.format(dialogue)))
 
 	def change(self, mood):
 		ScriptEngine.addCommand("change", (self.name, mood))
@@ -58,7 +47,7 @@ class Narrator(Actor):
 		self.inventory = []
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("nsay", (format(dialogue), ""))
+		ScriptEngine.addCommand("nsay", (StringFormatter.format(dialogue), ""))
 	
 class Scene:
 	def __init__(self):

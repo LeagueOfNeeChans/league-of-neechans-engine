@@ -19,14 +19,14 @@ def scene2():
 	
 def scene3():
 	narrator.say("Probably better that way...")
-	narrator.say("You see yumi...what is she doing here?")
+	narrator.say("You see Yumi...what is she doing here?")
 	scene.add_actor(yumi, "left")
-	yumi.say("Um...%s-kun?" % player.name)
+	yumi.say("Um..." + player.name + "-kun?")
 	if player.has("flowers"):
 		narrator.say("You look at her and blush...she notices the flowers in your hand")
-		yumi.say("Oh...%s...are those for me?" % player.name)
+		yumi.say("Oh..." + player.name + "...are those for me?")
 		choice("Um...yes...I...", "confession")
-		choice("No...they are for Girl2", "sad_scene")
+		choice("No...they are for Miku.", "sad_scene")
 	else:
 		yumi.say("Would you like to go to a movie with me?")
 		choice("Yes", "movie")
@@ -39,9 +39,9 @@ def movie():
 	return "_end"
 	
 def sad_scene():
-	yumi.say("%s I HATE YOU!" % player.name)
+	yumi.say(player.name + " I HATE YOU!")
 	return "_end"
 	
 def confession():
-	yumi.say("Oh %s...I love you!" % player.name)
+	yumi.say("Oh " + player.name + "...I love you!")
 	return "_end"
