@@ -45,5 +45,5 @@
 		return "_end"
 		
 	def confession():
-	yumi.say("Oh " + player.name + "...I love you!")
-	return "_end"
+		yumi.say("Oh " + player.name + "...I love you!")
+		return "_end"
