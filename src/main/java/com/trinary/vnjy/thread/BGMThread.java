@@ -6,12 +6,17 @@
 
 package com.trinary.vnjy.thread;
 
-import com.trinary.vnjy.PystRouter;
+import com.trinary.vnjy.se.Command;
 
 /**
  *
  * @author mmain
  */
-public class BGMThread extends Thread {
-    
+public class BGMThread extends TaggedThread {
+    protected String tag = "bgm";
+
+    @Override
+    public void process(Command command) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

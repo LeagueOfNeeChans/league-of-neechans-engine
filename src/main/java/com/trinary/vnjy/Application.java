@@ -6,11 +6,12 @@
 
 package com.trinary.vnjy;
 
-import com.trinary.vnjy.se.Choice;
 import com.trinary.vnjy.se.Command;
 import com.trinary.vnjy.se.ScriptEngine;
-import java.util.ArrayList;
-import java.util.Scanner;
+import com.trinary.vnjy.thread.BGMThread;
+import com.trinary.vnjy.thread.GFXThread;
+import com.trinary.vnjy.thread.IOThread;
+import com.trinary.vnjy.thread.SFXThread;
 
 /**
  *
@@ -19,41 +20,31 @@ import java.util.Scanner;
 public class Application {
     public static void main(String[] args) {
         ScriptEngine.init("lon.pyst");
+        GFXThread gfx = new GFXThread();
+        SFXThread sfx = new SFXThread();
+        BGMThread bgm = new BGMThread();
+        IOThread  io  = new IOThread(); 
         
-        Scanner ob = new Scanner(System.in);
-        Integer choice = 0;
-      
+        // Start all threads
+        gfx.start();
+        sfx.start();
+        bgm.start();
+        io.start();
+        
+        // Run main loop
         while (!ScriptEngine.isDone()) {
             ScriptEngine.run();
             
             Command command;
-            ArrayList<Choice> choices = new ArrayList<Choice>();
-            int i = 1;
-            
             while ((command = ScriptEngine.popCommand()) != null) {
-                switch (command.getCommand()) {
-                    case "say":
-                        System.out.println(command.getArg(0) + ": " + command.getArg(1));
-                        break;
-                    case "nsay":
-                        System.out.println(command.getArg(0));
-                        break;
-                    case "choice":
-                        System.out.println(i + "> " + command.getArg(0));
-                        choices.add(new Choice(command));
-                        i++;
-                        break;
-                    default:
-                        System.out.println(command);
-                }
-            }
-            
-            if (ScriptEngine.isPaused()) {
-                System.out.println("Enter choice: ");
-                choice = Integer.parseInt(ob.nextLine());
-                
-                ScriptEngine.choose(choices.get(choice - 1));
+                PystRouter.routeCommand(command);
             }
         }
+        
+        // Kill all threads
+        gfx.terminate();
+        sfx.terminate();
+        bgm.terminate();
+        io.start();
     }
 }

@@ -16,44 +16,66 @@ import java.util.Queue;
  */
 public class PystRouter {
     public static Queue<Command> pystQueue;
+    private static final Object lock;
     
     static {
-        pystQueue = new LinkedList<Command>();
+        pystQueue = new LinkedList<>();
+        lock = new Object();
     }
     
-    private static boolean peekTag(String tag) {
-        return pystQueue.peek().getTag() == tag;
+    public static void routeCommand(Command command) {
+        switch (command.getCommand()) {
+            case "gfx.scene.change":
+            case "gfx.actor.add":
+            case "gfx.actor.change":
+            case "gfx.actor.say":
+            case "gfx.actor.emote":
+            case "gfx.narrator.nsay":
+            case "gfx.choice.render":
+                command.setTag("gfx");
+            case "io.choice.request":
+                command.setTag("io");
+        }
+    }
+    
+    public static Command popTaggedCommand(String tag) {
+        if (! pystQueue.peek().getTag().equals(tag)) {
+            return null;
+        }
+        return popCommand();
+    }
+    
+    // Pop command (thread safe)
+    public static Command popCommand() {
+        synchronized (lock) {
+            return pystQueue.remove();
+        }
+    }
+    
+    // Push command (thread safe)
+    public static void pushCommand(Command command) {
+        synchronized (lock) {
+            pystQueue.add(command);
+        }
     }
     
     // Graphics command
     public static Command getNextGFXCommand() {
-        if (!peekTag("gfx")) {
-            return null;
-        }
-        return pystQueue.remove();
+        return popTaggedCommand("gfx");
     }
     
     // Sound FX command
     public static Command getNextSFXCommand() {
-        if (!peekTag("sfx")) {
-            return null;
-        }
-        return pystQueue.remove();
+        return popTaggedCommand("sfx");
     }
     
     // Music command
     public static Command getNextBGMCommand() {
-        if (!peekTag("bgm")) {
-            return null;
-        }
-        return pystQueue.remove();
+        return popTaggedCommand("bgm");
     }
     
     // Input/Output command
     public static Command getNextIOCommand() {
-        if (!peekTag("io")) {
-            return null;
-        }
-        return pystQueue.remove();
+        return popTaggedCommand("io");
     }
 }

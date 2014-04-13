@@ -6,12 +6,17 @@
 
 package com.trinary.vnjy.thread;
 
-import com.trinary.vnjy.PystRouter;
+import com.trinary.vnjy.se.Command;
 
 /**
  *
  * @author mmain
  */
-public class GFXThread extends Thread {
-    
+public class GFXThread extends TaggedThread {
+    protected String tag = "gfx";
+
+    @Override
+    public void process(Command command) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
