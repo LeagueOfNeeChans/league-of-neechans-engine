@@ -8,10 +8,7 @@ package com.trinary.vnjy;
 
 import com.trinary.vnjy.se.Command;
 import com.trinary.vnjy.se.ScriptEngine;
-import com.trinary.vnjy.thread.BGMThread;
-import com.trinary.vnjy.thread.GFXThread;
-import com.trinary.vnjy.thread.IOThread;
-import com.trinary.vnjy.thread.SFXThread;
+import com.trinary.vnjy.thread.*;
 
 /**
  *
