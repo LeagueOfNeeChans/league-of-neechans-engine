@@ -30,10 +30,10 @@ class Actor:
 		return item in self.inventory
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("say", (self.name, StringFormatter.format(dialogue)))
+		ScriptEngine.addCommand("gfx.actor.say", (self.name, StringFormatter.format(dialogue)))
 
 	def change(self, mood):
-		ScriptEngine.addCommand("change", (self.name, mood))
+		ScriptEngine.addCommand("gfx.actor.change", (self.name, mood))
 		
 class Player(Actor):
 	def __init__(self, name):
@@ -47,20 +47,20 @@ class Narrator(Actor):
 		self.inventory = []
 		
 	def say(self, dialogue):
-		ScriptEngine.addCommand("nsay", (StringFormatter.format(dialogue), ""))
+		ScriptEngine.addCommand("gfx.narrator.say", (StringFormatter.format(dialogue), ""))
 	
 class Scene:
 	def __init__(self):
 		pass
 		
 	def move(self, location):
-		ScriptEngine.addCommand("move", (location, ""))
+		ScriptEngine.addCommand("gfx.scene.move", (location, ""))
 		
 	def add_actor(self, actor, side):
-		ScriptEngine.addCommand("add_actor", (actor.name, side))
+		ScriptEngine.addCommand("gfx.scene.actor.add", (actor.name, side))
 		
 	def display_image(self, resource):
-		ScriptEngine.addCommand("display_image", (resource, ""))
+		ScriptEngine.addCommand("gfx.scene.display", (resource, ""))
 		
 def choice(text, next):
-	ScriptEngine.addCommand("choice", (text, next))
+	ScriptEngine.addCommand("io.choice.request", (text, next))

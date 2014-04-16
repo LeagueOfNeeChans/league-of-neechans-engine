@@ -14,9 +14,14 @@ import com.trinary.vnjy.se.Command;
  */
 public class SFXThread extends TaggedThread {
     protected String tag = "sfx";
+    
+    @Override
+    protected String getTag() {
+        return "sfx";
+    }
 
     @Override
     public void process(Command command) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("SFX:  " + command);
     }
 }

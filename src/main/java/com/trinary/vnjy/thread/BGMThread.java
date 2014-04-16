@@ -14,9 +14,14 @@ import com.trinary.vnjy.se.Command;
  */
 public class BGMThread extends TaggedThread {
     protected String tag = "bgm";
+    
+    @Override
+    protected String getTag() {
+        return "bgm";
+    }
 
     @Override
     public void process(Command command) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("BGM:  " + command);
     }
 }

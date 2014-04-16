@@ -42,6 +42,6 @@ public class Application {
         gfx.terminate();
         sfx.terminate();
         bgm.terminate();
-        io.start();
+        io.terminate();
     }
 }

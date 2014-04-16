@@ -18,8 +18,6 @@ import org.python.core.PyTuple;
 public class Command {
     private String command = "";
     private PyTuple args;
-    
-    private String tag = "";
 
     public String getCommand() {
         return command;
@@ -42,11 +40,7 @@ public class Command {
     }
 
     public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
+        return command.split("\\.")[0];
     }
     
     public Command(String command, PyTuple args) {

@@ -8,21 +8,36 @@ package com.trinary.vnjy.thread;
 
 import com.trinary.vnjy.PystRouter;
 import com.trinary.vnjy.se.Command;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mmain
  */
 public abstract class TaggedThread extends Thread {
-    protected String tag = "none";
     protected boolean running = false;
     
+    protected String getTag() {
+        return "none";
+    }
+    
     protected Command popQueue() {
-        return PystRouter.popTaggedCommand(tag);
+        return PystRouter.popCommand(getTag());
+    }
+    
+    protected Command peekQueue() {
+        return PystRouter.peekCommand(getTag());
     }
     
     protected void pushQueue(Command command) {
-        PystRouter.pushCommand(command);
+        PystRouter.routeCommand(command);
+    }
+    
+    @Override
+    public void start() {
+        running = true;
+        super.start();
     }
     
     @Override 
@@ -30,8 +45,19 @@ public abstract class TaggedThread extends Thread {
         while (running) {
             Command command = popQueue();
             
+            // If no command, then sleep and restart loop
+            if (command == null) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TaggedThread.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                continue;
+            }
+            
             // Process command.
             process(command);
+            
         }
     }
     
