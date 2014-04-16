@@ -70,6 +70,7 @@ The graphics core is responsible for rendering graphical content like images, te
 Renders dialogue to the textbox.
 
 Arguments:
+
 + actor
 + text
 
@@ -78,6 +79,7 @@ Arguments:
 Changes actors mood (displayed image).
 
 Arguments:
+
 + actor
 + transition
 
@@ -86,6 +88,7 @@ Arguments:
 Renders narrator or inner monologue to the textbox.
 
 Arguments:
+
 + text
 
 #### gfx.scene.change
@@ -93,6 +96,7 @@ Arguments:
 Changes the current scene location (background).
 
 Arguments:
+
 + location
 + time
 
@@ -101,6 +105,7 @@ Arguments:
 Adds an additional actor to the scene stack and chooses a side of the screen for them.
 
 Arguments:
+
 + actor
 + side
 
@@ -109,6 +114,7 @@ Arguments:
 Renders a screen filling image.
 
 Arguments:
+
 + asset name
 
 #### gfx.choice.prompt
@@ -116,11 +122,16 @@ Arguments:
 Renders a player choice to the screen.
 
 Arguments:
+
 + text
 
 ### SFX Core
 
+This core is responsible for playing sound effects or voice acting.
+
 ### BGM Core
+
+This core is responsible for playing and changing music.
 
 ### IO Core
 
@@ -131,6 +142,7 @@ The IO core is responsible for getting player input.  Prompts will add to the nu
 Adds a choice to the local choicestore.
 
 Arguments:
+
 + text
 + next scene
 
@@ -149,4 +161,5 @@ Some of the features of the Pyst system will monitor the queue as well.  Especia
 Notify the Script Engine of a choice the player has made.
 
 Arguments:
+
 + choice
