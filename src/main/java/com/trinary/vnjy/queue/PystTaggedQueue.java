@@ -31,44 +31,4 @@ public class PystTaggedQueue extends PystQueue {
         
         return command;
     }
-    
-    // Graphics command
-    public Command peekGFXCommand() {
-        return peekTaggedCommand("gfx");
-    }
-    
-    // Sound FX command
-    public Command peekSFXCommand() {
-        return peekTaggedCommand("sfx");
-    }
-    
-    // Music command
-    public Command peekBGMCommand() {
-        return peekTaggedCommand("bgm");
-    }
-    
-    // Input/Output command
-    public Command peekIOCommand() {
-        return peekTaggedCommand("io");
-    }
-    
-    // Graphics command
-    public Command popGFXCommand() {
-        return popTaggedCommand("gfx");
-    }
-    
-    // Sound FX command
-    public Command popSFXCommand() {
-        return popTaggedCommand("sfx");
-    }
-    
-    // Music command
-    public Command popBGMCommand() {
-        return popTaggedCommand("bgm");
-    }
-    
-    // Input/Output command
-    public Command popIOCommand() {
-        return popTaggedCommand("io");
-    }
 }

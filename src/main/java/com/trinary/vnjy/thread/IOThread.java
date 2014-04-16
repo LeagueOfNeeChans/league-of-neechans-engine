@@ -6,14 +6,19 @@
 
 package com.trinary.vnjy.thread;
 
+import com.trinary.vnjy.PystRouter;
+import com.trinary.vnjy.se.Choice;
 import com.trinary.vnjy.se.Command;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author mmain
  */
 public class IOThread extends TaggedThread {
-    protected String tag = "io";
+    protected Scanner sc = new Scanner(System.in);
+    protected ArrayList<Choice> choices = new ArrayList<Choice>();
     
     @Override
     protected String getTag() {
@@ -23,5 +28,18 @@ public class IOThread extends TaggedThread {
     @Override
     public void process(Command command) {
         System.out.println("IO:  " + command);
+        
+        switch (command.getFunction()) {
+            case "prompt":
+                choices.add(new Choice(command));
+                break;
+            case "request":
+                System.out.println("Make a choice:");
+                Integer choice = Integer.parseInt(sc.nextLine());
+                System.out.println("YOU CHOSE: " + choices.get(choice));
+                PystRouter.routeCommand(choices.get(choice).toResponse());
+                choices = new ArrayList<Choice>();
+                break;
+        }
     }
 }

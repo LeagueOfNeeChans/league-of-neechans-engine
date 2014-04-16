@@ -6,6 +6,9 @@
 
 package com.trinary.vnjy.se;
 
+import org.python.core.PyString;
+import org.python.core.PyTuple;
+
 /**
  *
  * @author mmain
@@ -28,6 +31,18 @@ public class Choice {
 
     public void setNext(String next) {
         this.next = next;
+    }
+    
+    public Command toResponse() {
+        PyTuple pt = new PyTuple();
+        pt.list = new PyString[2];
+        pt.list[0] = new PyString(text);
+        pt.list[1] = new PyString(next);
+        return new Command("se.choice.response", pt);
+    }
+    
+    public String toString() {
+        return text;
     }
     
     public Choice(String text, String next) {

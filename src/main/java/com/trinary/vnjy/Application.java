@@ -6,6 +6,7 @@
 
 package com.trinary.vnjy;
 
+import com.trinary.vnjy.se.Choice;
 import com.trinary.vnjy.se.Command;
 import com.trinary.vnjy.se.ScriptEngine;
 import com.trinary.vnjy.thread.*;
@@ -32,7 +33,20 @@ public class Application {
         while (!ScriptEngine.isDone()) {
             ScriptEngine.run();
             
-            Command command;
+            Command command = PystRouter.peekCommand("se");
+            
+            if (command != null) {
+                
+                System.out.println("SE: " + command);
+                
+                if (command.getCommand().equals("se.choice.response")) {
+                    Choice choice = new Choice(command);
+                    ScriptEngine.choose(choice);
+                }
+                
+                PystRouter.popCommand("se");
+            }
+            
             while ((command = ScriptEngine.popCommand()) != null) {
                 PystRouter.routeCommand(command);
             }

@@ -16,9 +16,6 @@ class Actor:
 	def give(self, target, item):
 		if self.has(item):
 			target.receive(item)
-			return True
-		else:
-			return False
 			
 	def receive(self, name):
 		self.inventory.append(name)
@@ -57,10 +54,11 @@ class Scene:
 		ScriptEngine.addCommand("gfx.scene.move", (location, ""))
 		
 	def add_actor(self, actor, side):
-		ScriptEngine.addCommand("gfx.scene.actor.add", (actor.name, side))
+		ScriptEngine.addCommand("gfx.scene.add", (actor.name, side))
 		
 	def display_image(self, resource):
 		ScriptEngine.addCommand("gfx.scene.display", (resource, ""))
 		
 def choice(text, next):
-	ScriptEngine.addCommand("io.choice.request", (text, next))
+	ScriptEngine.addCommand("gfx.choice.prompt", (text, ""))
+	ScriptEngine.addCommand("io.choice.prompt", (text, next))

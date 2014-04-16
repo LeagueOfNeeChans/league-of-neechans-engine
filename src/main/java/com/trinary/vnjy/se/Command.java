@@ -43,6 +43,14 @@ public class Command {
         return command.split("\\.")[0];
     }
     
+    public String getNamespace() {
+        return command.split("\\.")[1];
+    }
+    
+    public String getFunction() {
+        return command.split("\\.")[2];
+    }
+    
     public Command(String command, PyTuple args) {
         this.command = command;
         this.args = args;

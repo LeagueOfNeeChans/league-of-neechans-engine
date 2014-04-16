@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import org.python.core.PyFunction;
-import org.python.core.PyList;
 import org.python.core.PyString;
 import org.python.core.PyStringMap;
 import org.python.core.PyTuple;
@@ -110,8 +109,13 @@ public class ScriptEngine {
         }
         
         if (next.equals("_wait")) {
+            addCommand("io.choice.request", new PyTuple());
             state = ScriptState.PAUSED;
         } else if (next.equals("_end")) {
+            addCommand("gfx.shutdown", new PyTuple());
+            addCommand("sfx.shutdown", new PyTuple());
+            addCommand("bgm.shutdown", new PyTuple());
+            addCommand("io.shutdown", new PyTuple());
             state = ScriptState.DONE;
         }  else {
             return false;

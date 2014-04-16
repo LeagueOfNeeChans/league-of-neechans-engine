@@ -43,7 +43,7 @@ public abstract class TaggedThread extends Thread {
     @Override 
     public void run() {
         while (running) {
-            Command command = popQueue();
+            Command command = peekQueue();
             
             // If no command, then sleep and restart loop
             if (command == null) {
@@ -58,6 +58,7 @@ public abstract class TaggedThread extends Thread {
             // Process command.
             process(command);
             
+            popQueue();
         }
     }
     
