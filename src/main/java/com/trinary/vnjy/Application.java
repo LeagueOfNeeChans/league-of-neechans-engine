@@ -31,22 +31,27 @@ public class Application {
         
         // Run main loop
         while (!ScriptEngine.isDone()) {
-            ScriptEngine.run();
+            // Run next scene
+            ScriptEngine.nextScene();
             
-            Command command = PystRouter.peekCommand("se");
-            
-            if (command != null) {
-                
-                System.out.println("SE: " + command);
-                
-                if (command.getCommand().equals("se.choice.response")) {
-                    Choice choice = new Choice(command);
+            // Check for io command
+            Command ioCommand = PystRouter.peekIoCommand("se");
+            if (ioCommand != null) {
+                if (ioCommand.getCommand().equals("se.choice.response")) {
+                    Choice choice = new Choice(ioCommand);
                     ScriptEngine.choose(choice);
                 }
-                
+                PystRouter.popIoCommand("se");
+            }
+            
+            // Check for non-io command
+            Command command = PystRouter.peekCommand("se");
+            if (command != null) {               
+                System.out.println("SE: " + command);
                 PystRouter.popCommand("se");
             }
             
+            // If SE has a command from the script waiting, route it
             while ((command = ScriptEngine.popCommand()) != null) {
                 PystRouter.routeCommand(command);
             }

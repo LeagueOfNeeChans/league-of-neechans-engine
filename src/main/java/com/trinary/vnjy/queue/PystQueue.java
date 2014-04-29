@@ -7,11 +7,13 @@
 package com.trinary.vnjy.queue;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
+//import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  *
  * @author mmain
  */
+//public abstract class PystQueue extends PriorityBlockingQueue {
 public abstract class PystQueue extends ConcurrentLinkedQueue {
 
 }
