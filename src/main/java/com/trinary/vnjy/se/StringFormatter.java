@@ -28,4 +28,17 @@ public class StringFormatter {
         
         return new PyString(s);
     }
+    
+    public static String format(String s) {
+        Pattern p = Pattern.compile("#\\{([^{]*)\\}");
+        Matcher m = p.matcher(s);
+        
+        while (m.find()) {
+            PyString item = new PyString(m.group(1));
+            PyString value = (PyString)ScriptEngine.getNamespace().get(item);
+            s = s.replaceAll("#\\{" + item.toString() + "\\}", value.toString());
+        }
+        
+        return s;
+    }
 }

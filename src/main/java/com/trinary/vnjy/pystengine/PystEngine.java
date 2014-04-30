@@ -6,9 +6,6 @@
 
 package com.trinary.vnjy.pystengine;
 
-import org.python.core.PyString;
-import org.python.core.PyTuple;
-
 import com.trinary.vnjy.se.ScriptEngine;
 
 /**
@@ -16,8 +13,8 @@ import com.trinary.vnjy.se.ScriptEngine;
  * @author dstillz
  */
 public class PystEngine {
-    public void choice(String text, String next) {
-        ScriptEngine.addCommand("gfx.choice.prompt", new PyTuple(text, ""));
-        ScriptEngine.addCommand("io.choice.prompt", new PyTuple(text, next));        
+    public void choice(String text, String next) {       
+        ScriptEngine.addCommand("gfx.choice.prompt", text, "");
+        ScriptEngine.addCommand("io.choice.prompt", text, next);        
     }
 }

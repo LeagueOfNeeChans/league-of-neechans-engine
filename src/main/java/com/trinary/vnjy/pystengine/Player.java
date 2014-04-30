@@ -11,5 +11,7 @@ package com.trinary.vnjy.pystengine;
  * @author dstillz
  */
 public class Player extends Actor {
-
+    public Player(String name) {
+        super(name);
+    }
 }

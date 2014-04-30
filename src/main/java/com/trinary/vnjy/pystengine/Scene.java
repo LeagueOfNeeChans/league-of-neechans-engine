@@ -6,9 +6,6 @@
 
 package com.trinary.vnjy.pystengine;
 
-import org.python.core.PyString;
-import org.python.core.PyTuple;
-
 import com.trinary.vnjy.se.ScriptEngine;
 
 /**
@@ -17,14 +14,14 @@ import com.trinary.vnjy.se.ScriptEngine;
  */
 public class Scene {
     public void move(String location) {
-        ScriptEngine.addCommand("gfx.scene.move", new PyTuple(location, ""));
+        ScriptEngine.addCommand("gfx.scene.move", location, "");
     }
 
     public void add_actor(Actor actor, String side) {
-        ScriptEngine.addCommand("gfx.scene.add", new PyTuple(actor.getName(), side));
+        ScriptEngine.addCommand("gfx.scene.add", actor.getName(), side);
     }
     
     public void display_image(String resource) {
-        ScriptEngine.addCommand("gfx.scene.display", new PyTuple(resource, ""));
+        ScriptEngine.addCommand("gfx.scene.display", resource, "");
     }
 }

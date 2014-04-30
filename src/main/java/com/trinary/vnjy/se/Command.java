@@ -17,7 +17,7 @@ import org.python.core.PyTuple;
  */
 public class Command {
     private String command = "";
-    private PyTuple args;
+    private ArrayList<String> args = new ArrayList();
 
     public String getCommand() {
         return command;
@@ -27,16 +27,16 @@ public class Command {
         this.command = command;
     }
 
-    public PyTuple getArgs() {
+    public ArrayList<String> getArgs() {
         return args;
     }
 
-    public void setArgs(PyTuple args) {
+    public void setArgs(ArrayList<String> args) {
         this.args = args;
     }
     
     public String getArg(Integer index) {
-        return ((PyString)args.list[index]).toString();
+        return args.get(index);
     }
 
     public String getTag() {
@@ -51,18 +51,20 @@ public class Command {
         return command.split("\\.")[2];
     }
     
-    public Command(String command, PyTuple args) {
+    public Command(String command, ArrayList<String> args) {
         this.command = command;
         this.args = args;
     }
     
-    @Override
-    public String toString() {
-        ArrayList<String> argList = new ArrayList<String>();
+    public Command(String command, PyTuple args) {
+        this.command = command;
         for (PyObject object : args.list) {
-            argList.add(((PyString)object).toString());
+            this.args.add(((PyString)object).toString());
         }
-        
-        return command + ":" + argList;
+    }
+    
+    @Override
+    public String toString() {    
+        return command + ":" + args;
     }
 }

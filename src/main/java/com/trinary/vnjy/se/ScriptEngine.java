@@ -15,11 +15,6 @@ import org.python.core.PyStringMap;
 import org.python.core.PyTuple;
 import org.python.util.PythonInterpreter;
 
-import com.trinary.vnjy.pystengine.PystEngine;
-import com.trinary.vnjy.pystengine.Actor;
-import com.trinary.vnjy.pystengine.Narrator;
-import com.trinary.vnjy.pystengine.Player;
-import com.trinary.vnjy.pystengine.Scene;
 
 /**
  *
@@ -47,7 +42,7 @@ public class ScriptEngine {
         actors.add("miku");
         
         // Inject includes
-        pi.exec("from se.PystEngine import *");
+        pi.exec("from com.trinary.vnjy.pystengine import *");
         pi.exec("from com.trinary.vnjy.se import ScriptEngine");
         
         // Inject player
@@ -63,12 +58,15 @@ public class ScriptEngine {
 
         // Inject narrator
         pi.exec("narrator = Narrator()" );
+        
+        // Inject pystengine
+        pi.exec("engine = PystEngine()");
 
         // Load pyst script
         pi.execfile("lon.pyst");
         
         // Run inject
-        pi.exec("setup(globals())");
+        pi.exec("ScriptEngine.inject(globals())");
     }
     
     public static void inject(PyStringMap functionTable) {
@@ -77,6 +75,17 @@ public class ScriptEngine {
     
     public static void addCommand(String command, PyTuple args) {
         addCommand(new Command(command, args));
+    }
+    
+    public static void addCommand(String command, ArrayList<String> args) {
+        addCommand(new Command(command, args));
+    }
+    
+    public static void addCommand(String command, String name, String args) {
+        ArrayList<String> actual_args = new ArrayList();
+        actual_args.add(name);
+        actual_args.add(args);
+        addCommand(new Command(command, actual_args));
     }
     
     public static void addCommand(Command c) {

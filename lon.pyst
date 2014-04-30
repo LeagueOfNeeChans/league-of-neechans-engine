@@ -4,8 +4,8 @@ def start():
 def scene1():
 	scene.move("school_room1")
 	narrator.say("You see flowers on the table")
-	choice("Take the flowers!", "scene2")
-	choice("Hmmm...better not...", "scene3")
+	engine.choice("Take the flowers!", "scene2")
+	engine.choice("Hmmm...better not...", "scene3")
 	return "_wait"
 	
 def scene2():
@@ -20,12 +20,12 @@ def scene3():
 	if player.has("flowers"):
 		narrator.say("You look at her and blush...she notices the flowers in your hand")
 		yumi.say("Oh..." + player.name + "...are those for me?")
-		choice("Um...yes...I...", "confession")
-		choice("No...they are for Miku.", "choose_miku")
+		engine.choice("Um...yes...I...", "confession")
+		engine.choice("No...they are for Miku.", "choose_miku")
 	else:
 		yumi.say("Would you like to go to a movie with me?")
-		choice("Yes", "movie")
-		choice("No thanks", "sad_scene")
+		engine.choice("Yes", "movie")
+		engine.choice("No thanks", "sad_scene")
 	
 	return "_wait"
 	

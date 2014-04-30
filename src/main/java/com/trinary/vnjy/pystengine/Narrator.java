@@ -6,13 +6,7 @@
 
 package com.trinary.vnjy.pystengine;
 
-import org.python.core.PyList;
-import org.python.core.PyObject;
-import org.python.core.PyString;
-import org.python.core.PyTuple;
-
 import com.trinary.vnjy.se.ScriptEngine;
-import com.trinary.vnjy.se.StringFormatter;
 
 /**
  *
@@ -20,6 +14,10 @@ import com.trinary.vnjy.se.StringFormatter;
  */
 public class Narrator extends Actor {
     public void say(String dialogue) {
-        ScriptEngine.addCommand("gfx.narrator.say", new PyTuple(this.name, StringFormatter.format(dialogue)));
-    }    
+        ScriptEngine.addCommand("gfx.narrator.say", name, dialogue);
+    }
+    
+    public Narrator() {
+        super("narrator");
+    }
 }
