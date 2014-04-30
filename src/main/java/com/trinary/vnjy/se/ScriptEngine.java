@@ -15,6 +15,12 @@ import org.python.core.PyStringMap;
 import org.python.core.PyTuple;
 import org.python.util.PythonInterpreter;
 
+import com.trinary.vnjy.pystengine.PystEngine;
+import com.trinary.vnjy.pystengine.Actor;
+import com.trinary.vnjy.pystengine.Narrator;
+import com.trinary.vnjy.pystengine.Player;
+import com.trinary.vnjy.pystengine.Scene;
+
 /**
  *
  * @author mmain
