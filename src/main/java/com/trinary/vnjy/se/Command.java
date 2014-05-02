@@ -17,7 +17,7 @@ import org.python.core.PyTuple;
  */
 public class Command implements Tagged {
     protected String from = "";
-    protected Boolean blocking = false;
+    protected Boolean blocking = true;
     private String command = "";
     private ArrayList<String> args = new ArrayList();
     private Boolean removed = false;
@@ -87,10 +87,8 @@ public class Command implements Tagged {
         return command.split("\\.")[2];
     }
     
-    public Command remove() {
-        if (removed) {
-            return null;
-        }
+    public Command remove() {        
+        //System.out.println("MARKING COMMAND COMPLETED.");
         
         removed = true;
         return this;

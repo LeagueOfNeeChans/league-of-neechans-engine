@@ -23,10 +23,12 @@ public class PystRouter {
     }
     
     public static void routeCommand(Command command) {
+        //System.out.println("ROUTING COMMAND " + command);
         mainQueue.add(command);
     }
     
     public static Command popCommand(String tag) {
+        //System.out.println("POPPING COMMAND " + mainQueue.peekTaggedCommand(tag));
         return mainQueue.popTaggedCommand(tag);
     }
     
@@ -35,10 +37,12 @@ public class PystRouter {
     }
     
     public static void routeIoCommand(Command command) {
+        //System.out.println("ROUTING IO COMMAND " + command);
         ioQueue.add(command);
     }
     
     public static Command popIoCommand(String tag) {
+        //System.out.println("POPPING IO COMMAND " + mainQueue.peekTaggedCommand(tag));
         return ioQueue.popTaggedCommand(tag);
     }
     

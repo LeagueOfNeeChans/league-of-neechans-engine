@@ -27,13 +27,12 @@ public class PystTaggedQueue extends PystQueue {
     public Command peekTaggedCommand(String tag) {
         Command command = (Command)peek();
         
-        if (command == null || !command.getTag().equals(tag)) {
-            return null;
-        }
-        
         // If command has been expended, then remove it.
-        if (command.getTag().equals("none")) {
+        if (command != null && command.getTag().equals("none")) {
+            //System.out.println("COMMAND IS EXPENDED.");
             remove();
+            return null;
+        } else if (command == null || !command.getTag().equals(tag)) {
             return null;
         }
         

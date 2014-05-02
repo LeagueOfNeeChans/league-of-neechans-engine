@@ -6,8 +6,7 @@
 
 package com.trinary.vnjy.se;
 
-import org.python.core.PyString;
-import org.python.core.PyTuple;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,11 +33,10 @@ public class Choice {
     }
     
     public Command toResponse() {
-        PyTuple pt = new PyTuple();
-        pt.list = new PyString[2];
-        pt.list[0] = new PyString(text);
-        pt.list[1] = new PyString(next);
-        return new Command("se.choice.response", pt);
+        ArrayList<String> args = new ArrayList<>();
+        args.add(text);
+        args.add(next);
+        return new Command("se.choice.response", args);
     }
     
     @Override
