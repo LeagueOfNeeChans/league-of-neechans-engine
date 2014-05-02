@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class IOThread extends TaggedThread {
     protected Scanner sc = new Scanner(System.in);
-    protected ArrayList<Choice> choices = new ArrayList<Choice>();
+    protected ArrayList<Choice> choices = new ArrayList<>();
     
     @Override
     protected String getTag() {
@@ -37,8 +37,9 @@ public class IOThread extends TaggedThread {
                 System.out.println("Make a choice:");
                 Integer choice = Integer.parseInt(sc.nextLine());
                 System.out.println("YOU CHOSE: " + choices.get(choice));
-                PystRouter.routeCommand(choices.get(choice).toResponse());
-                choices = new ArrayList<Choice>();
+                Command c = choices.get(choice).toResponse();
+                PystRouter.routeIoCommand(c);
+                choices = new ArrayList<>();
                 break;
         }
     }

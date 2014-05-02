@@ -18,9 +18,7 @@ import java.util.logging.Logger;
 public abstract class TaggedThread extends Thread {
     protected boolean running = false;
     
-    protected String getTag() {
-        return "none";
-    }
+    protected abstract String getTag();
     
     protected Command popQueue() {
         return PystRouter.popCommand(getTag());

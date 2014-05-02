@@ -14,21 +14,35 @@ import com.trinary.vnjy.se.Command;
  * @author mmain
  */
 public class PystRouter {
-    public static PystTaggedQueue pystQueue;
+    public static PystTaggedQueue mainQueue;
+    public static PystTaggedQueue ioQueue;
     
     static {
-        pystQueue = new PystTaggedQueue();
+        mainQueue = new PystTaggedQueue();
+        ioQueue = new PystTaggedQueue();
     }
     
     public static void routeCommand(Command command) {
-        pystQueue.add(command);
+        mainQueue.add(command);
     }
     
     public static Command popCommand(String tag) {
-        return pystQueue.popTaggedCommand(tag);
+        return mainQueue.popTaggedCommand(tag);
     }
     
     public static Command peekCommand(String tag) {
-        return pystQueue.peekTaggedCommand(tag);
+        return mainQueue.peekTaggedCommand(tag);
+    }
+    
+    public static void routeIoCommand(Command command) {
+        ioQueue.add(command);
+    }
+    
+    public static Command popIoCommand(String tag) {
+        return ioQueue.popTaggedCommand(tag);
+    }
+    
+    public static Command peekIoCommand(String tag) {
+        return ioQueue.peekTaggedCommand(tag);
     }
 }

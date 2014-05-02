@@ -107,14 +107,14 @@ public class ScriptEngine {
     
     public static boolean start() {
         state = ScriptState.STARTED;
-        return run("start");
+        return nextScene("start");
     }
     
-    public static boolean run() {
-        return run(next);
+    public static boolean nextScene() {
+        return nextScene(next);
     }
     
-    public static boolean run(String function) {
+    public static boolean nextScene(String function) {
         PyString s = new PyString(function);
         if (namespace.has_key(s)) {
             PyFunction f = (PyFunction)namespace.get(s);
@@ -123,17 +123,20 @@ public class ScriptEngine {
             return false;
         }
         
-        if (next.equals("_wait")) {
-            addCommand("io.choice.request", new PyTuple());
-            state = ScriptState.PAUSED;
-        } else if (next.equals("_end")) {
-            addCommand("gfx.shutdown", new PyTuple());
-            addCommand("sfx.shutdown", new PyTuple());
-            addCommand("bgm.shutdown", new PyTuple());
-            addCommand("io.shutdown", new PyTuple());
-            state = ScriptState.DONE;
-        }  else {
-            return false;
+        switch (next) {
+            case "_wait":
+                addCommand("io.choice.request", new PyTuple());
+                state = ScriptState.PAUSED;
+                break;
+            case "_end":
+                addCommand("gfx.shutdown", new PyTuple());
+                addCommand("sfx.shutdown", new PyTuple());
+                addCommand("bgm.shutdown", new PyTuple());
+                addCommand("io.shutdown", new PyTuple());
+                state = ScriptState.DONE;
+                break;
+            default:
+                return false;
         }
         
         return true;

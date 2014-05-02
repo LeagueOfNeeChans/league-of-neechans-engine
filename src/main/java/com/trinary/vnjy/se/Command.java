@@ -15,9 +15,14 @@ import org.python.core.PyTuple;
  *
  * @author mmain
  */
-public class Command {
+public class Command implements Comparable {
     private String command = "";
+<<<<<<< HEAD
     private ArrayList<String> args = new ArrayList();
+=======
+    private int priority = 0;
+    private PyTuple args;
+>>>>>>> priority
 
     public String getCommand() {
         return command;
@@ -56,8 +61,22 @@ public class Command {
         this.args = args;
     }
     
+<<<<<<< HEAD
     public Command(String command, PyTuple args) {
         this.command = command;
+=======
+    public Integer getPriority() {
+        return priority;
+    }
+    
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+    
+    @Override
+    public String toString() {
+        ArrayList<String> argList = new ArrayList<String>();
+>>>>>>> priority
         for (PyObject object : args.list) {
             this.args.add(((PyString)object).toString());
         }
@@ -66,5 +85,17 @@ public class Command {
     @Override
     public String toString() {    
         return command + ":" + args;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Command c = (Command)o;
+        if (this.priority > c.priority) {
+            return 1;
+        } else if (this.priority < c.priority) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
