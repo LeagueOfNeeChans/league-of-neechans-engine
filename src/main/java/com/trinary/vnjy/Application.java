@@ -49,6 +49,10 @@ public class Application {
             if (command != null) {               
                 System.out.println("SE: " + command);
                 PystRouter.popCommand("se");
+                
+                if (command.getFunction().equals("shutdown")) {
+                    ScriptEngine.kill();
+                }
             }
             
             // If SE has a command from the script waiting, route it

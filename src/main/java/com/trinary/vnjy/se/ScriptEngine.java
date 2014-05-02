@@ -129,12 +129,14 @@ public class ScriptEngine {
                 state = ScriptState.PAUSED;
                 break;
             case "_end":
-                addCommand("gfx.shutdown", new PyTuple());
-                addCommand("sfx.shutdown", new PyTuple());
-                addCommand("bgm.shutdown", new PyTuple());
-                addCommand("io.shutdown", new PyTuple());
-                state = ScriptState.DONE;
+                addCommand("gfx.core.shutdown", new PyTuple());
+                addCommand("sfx.core.shutdown", new PyTuple());
+                addCommand("bgm.core.shutdown", new PyTuple());
+                addCommand("io.core.shutdown", new PyTuple());
+                addCommand("se.core.shutdown", new PyTuple());
+                next = "_done";
                 break;
+            case "_done":
             default:
                 return false;
         }
@@ -160,5 +162,9 @@ public class ScriptEngine {
     
     public static boolean isDone() {
         return state == ScriptState.DONE;
+    }
+    
+    public static void kill() {
+        state = ScriptState.DONE;
     }
 }
