@@ -7,6 +7,7 @@
 package com.trinary.vnjy.queue;
 
 import com.trinary.vnjy.se.Command;
+import com.trinary.vnjy.se.ComplexCommand;
 
 
 /**
@@ -21,7 +22,16 @@ public class PystTaggedQueue extends PystQueue {
             return null;
         }
         
-        return command.remove();
+        //System.out.println("POPPING COMMAND " + command);
+        
+        // This doesn't work yet...
+        //return command.remove();
+        
+        if (command instanceof ComplexCommand) {
+            return command.remove();
+        } else {
+            return (Command)remove();
+        }
     }
     
     public Command peekTaggedCommand(String tag) {
@@ -29,7 +39,8 @@ public class PystTaggedQueue extends PystQueue {
         
         // If command has been expended, then remove it.
         if (command != null && command.getTag().equals("none")) {
-            //System.out.println("COMMAND IS EXPENDED.");
+            //System.out.println("REMOVING COMMAND " + command);
+            
             remove();
             return null;
         } else if (command == null || !command.getTag().equals(tag)) {

@@ -88,7 +88,7 @@ public class Command implements Tagged {
     }
     
     public Command remove() {        
-        //System.out.println("MARKING COMMAND COMPLETED.");
+        System.out.println("MARKING COMMAND " + this + " COMPLETED.");
         
         removed = true;
         return this;
