@@ -26,7 +26,7 @@ public class IOThread extends TaggedThread {
     }
 
     @Override
-    public void process(Command command) {
+    public void processCommand(Command command) {
         System.out.println("IO:  " + command);
         
         switch (command.getFunction()) {
@@ -42,5 +42,9 @@ public class IOThread extends TaggedThread {
                 choices = new ArrayList<>();
                 break;
         }
+    }
+
+    @Override
+    public void processIo(Command command) {
     }
 }

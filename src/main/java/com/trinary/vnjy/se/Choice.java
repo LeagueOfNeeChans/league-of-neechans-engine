@@ -41,6 +41,7 @@ public class Choice {
         return new Command("se.choice.response", pt);
     }
     
+    @Override
     public String toString() {
         return text;
     }

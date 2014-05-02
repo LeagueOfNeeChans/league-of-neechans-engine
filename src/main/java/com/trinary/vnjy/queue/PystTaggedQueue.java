@@ -15,17 +15,25 @@ import com.trinary.vnjy.se.Command;
  */
 public class PystTaggedQueue extends PystQueue {
     public Command popTaggedCommand(String tag) {
-        if (peekTaggedCommand(tag) == null) {
+        Command command = peekTaggedCommand(tag);
+        
+        if (command == null) {
             return null;
         }
         
-        return (Command)remove();
+        return command.remove();
     }
     
     public Command peekTaggedCommand(String tag) {
         Command command = (Command)peek();
         
         if (command == null || !command.getTag().equals(tag)) {
+            return null;
+        }
+        
+        // If command has been expended, then remove it.
+        if (command.getTag().equals("none")) {
+            remove();
             return null;
         }
         

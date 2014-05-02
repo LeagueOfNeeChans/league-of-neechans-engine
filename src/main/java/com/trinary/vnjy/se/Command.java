@@ -15,12 +15,13 @@ import org.python.core.PyTuple;
  *
  * @author mmain
  */
-public class Command {
-    private String from = "";
+public class Command implements Tagged {
+    protected String from = "";
+    protected Boolean blocking = false;
     private String command = "";
     private ArrayList<String> args = new ArrayList();
-    private Boolean blocking = false;
-
+    private Boolean removed = false;
+    
     public String getFrom() {
         return from;
     }
@@ -54,19 +55,48 @@ public class Command {
     }
     
     public String getArg(Integer index) {
+        if (index >= args.size()) {
+            return "";
+        }
+        
         return args.get(index);
     }
 
+    @Override
     public String getTag() {
+        if (removed) {
+            return "none";
+        }
+        
         return command.split("\\.")[0];
     }
     
     public String getNamespace() {
+        if (removed) {
+            return "none";
+        }
+        
         return command.split("\\.")[1];
     }
     
     public String getFunction() {
+        if (removed) {
+            return "nop";
+        }
+        
         return command.split("\\.")[2];
+    }
+    
+    public Command remove() {
+        if (removed) {
+            return null;
+        }
+        
+        removed = true;
+        return this;
+    }
+    
+    public Command() {
     }
     
     public Command(String command, PyTuple args) {

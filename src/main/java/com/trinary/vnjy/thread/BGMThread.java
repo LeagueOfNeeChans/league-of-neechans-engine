@@ -21,7 +21,11 @@ public class BGMThread extends TaggedThread {
     }
 
     @Override
-    public void process(Command command) {
+    public void processCommand(Command command) {
         System.out.println("BGM:  " + command);
+    }
+
+    @Override
+    public void processIo(Command command) {
     }
 }
