@@ -22,22 +22,22 @@ import org.python.util.PythonInterpreter;
  */
 public class ScriptEngine {
     private static PyStringMap namespace;
-    private static Queue<Command> commands;
+    private static final Queue<Command> commands;
     private static String next;
     private static ScriptState state;
-    private static PythonInterpreter pi;
+    private static final PythonInterpreter pi;
     
     static {
         pi = new PythonInterpreter();
         next = "start";
-        commands = new LinkedList<Command>();
+        commands = new LinkedList<>();
         state = ScriptState.STOPPED;
     }
     
     public static void init(String filename) {
         // Load actors
         String player = "Guy";
-        ArrayList<String> actors = new ArrayList<String>();
+        ArrayList<String> actors = new ArrayList<>();
         actors.add("yumi");
         actors.add("miku");
         

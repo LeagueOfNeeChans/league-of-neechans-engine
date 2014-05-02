@@ -15,14 +15,27 @@ import org.python.core.PyTuple;
  *
  * @author mmain
  */
-public class Command implements Comparable {
+public class Command {
+    private String from = "";
     private String command = "";
-<<<<<<< HEAD
     private ArrayList<String> args = new ArrayList();
-=======
-    private int priority = 0;
-    private PyTuple args;
->>>>>>> priority
+    private Boolean blocking = false;
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public Boolean isBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(Boolean blocking) {
+        this.blocking = blocking;
+    }
 
     public String getCommand() {
         return command;
@@ -56,46 +69,20 @@ public class Command implements Comparable {
         return command.split("\\.")[2];
     }
     
-    public Command(String command, ArrayList<String> args) {
-        this.command = command;
-        this.args = args;
-    }
-    
-<<<<<<< HEAD
     public Command(String command, PyTuple args) {
         this.command = command;
-=======
-    public Integer getPriority() {
-        return priority;
-    }
-    
-    public void setPriority(Integer priority) {
-        this.priority = priority;
-    }
-    
-    @Override
-    public String toString() {
-        ArrayList<String> argList = new ArrayList<String>();
->>>>>>> priority
         for (PyObject object : args.list) {
             this.args.add(((PyString)object).toString());
         }
     }
     
+    public Command(String command, ArrayList<String> args) {
+        this.command = command;
+        this.args = args;
+    }
+    
     @Override
     public String toString() {    
         return command + ":" + args;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Command c = (Command)o;
-        if (this.priority > c.priority) {
-            return 1;
-        } else if (this.priority < c.priority) {
-            return -1;
-        } else {
-            return 0;
-        }
     }
 }
