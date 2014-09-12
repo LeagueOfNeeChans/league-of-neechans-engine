@@ -18,16 +18,14 @@ import com.trinary.vnjy.thread.*;
 public class Application {
     public static void main(String[] args) {
         ScriptEngine.init("lon.pyst");
-        GFXThread gfx = new GFXThread();
+        UIThread  ui = new UIThread();
         SFXThread sfx = new SFXThread();
         BGMThread bgm = new BGMThread();
-        IOThread  io  = new IOThread(); 
         
         // Start all threads
-        gfx.start();
+        ui.start();
         sfx.start();
         bgm.start();
-        io.start();
         
         // Run main loop
         while (!ScriptEngine.isDone()) {
@@ -62,9 +60,8 @@ public class Application {
         }
         
         // Kill all threads
-        gfx.terminate();
+        ui.terminate();
         sfx.terminate();
         bgm.terminate();
-        io.terminate();
     }
 }

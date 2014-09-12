@@ -14,14 +14,14 @@ import com.trinary.vnjy.se.ScriptEngine;
  */
 public class Scene {
     public void move(String location) {
-        ScriptEngine.addCommand("gfx.scene.move", location, "");
+        ScriptEngine.addCommand("ui.scene.move", location, "");
     }
 
     public void add_actor(Actor actor, String side) {
-        ScriptEngine.addCommand("gfx.scene.add", actor.getName(), side);
+        ScriptEngine.addCommand("ui.scene.add", actor.getName(), side);
     }
     
     public void display_image(String resource) {
-        ScriptEngine.addCommand("gfx.scene.display", resource, "");
+        ScriptEngine.addCommand("ui.scene.display", resource, "");
     }
 }

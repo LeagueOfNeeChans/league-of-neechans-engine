@@ -125,14 +125,13 @@ public class ScriptEngine {
         
         switch (next) {
             case "_wait":
-                addCommand("io.choice.request", new PyTuple());
+                addCommand("ui.choice.request", new PyTuple());
                 state = ScriptState.PAUSED;
                 break;
             case "_end":
-                addCommand("gfx.core.shutdown", new PyTuple());
+                addCommand("ui.core.shutdown", new PyTuple());
                 addCommand("sfx.core.shutdown", new PyTuple());
                 addCommand("bgm.core.shutdown", new PyTuple());
-                addCommand("io.core.shutdown", new PyTuple());
                 addCommand("se.core.shutdown", new PyTuple());
                 next = "_done";
                 break;

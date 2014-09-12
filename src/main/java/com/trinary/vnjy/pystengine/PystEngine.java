@@ -14,7 +14,6 @@ import com.trinary.vnjy.se.ScriptEngine;
  */
 public class PystEngine {
     public void choice(String text, String next) {       
-        ScriptEngine.addCommand("gfx.choice.prompt", text, "");
-        ScriptEngine.addCommand("io.choice.prompt", text, next);        
+        ScriptEngine.addCommand("ui.choice.prompt", text, next);      
     }
 }

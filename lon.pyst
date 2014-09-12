@@ -2,7 +2,7 @@ def start():
 	return "scene1"
 	
 def scene1():
-	scene.move("school_room1")
+	scene.move("classroom")
 	narrator.say("You see flowers on the table")
 	engine.choice("Take the flowers!", "scene2")
 	engine.choice("Hmmm...better not...", "scene3")
@@ -15,10 +15,12 @@ def scene2():
 	
 def scene3():
 	narrator.say("You see Yumi...what is she doing here?")
-	scene.add_actor(yumi, "left")
+	scene.add_actor(yumi, "right")
+	yumi.change("default")
 	yumi.say("Um..." + player.name + "-kun?")
 	if player.has("flowers"):
 		narrator.say("You look at her and blush...she notices the flowers in your hand")
+		yumi.change("wishful")
 		yumi.say("Oh..." + player.name + "...are those for me?")
 		engine.choice("Um...yes...I...", "confession")
 		engine.choice("No...they are for Miku.", "choose_miku")
@@ -38,6 +40,7 @@ def movie():
 	return "_end"
 	
 def sad_scene():
+	yumi.change("annoyed")
 	yumi.say(player.name + " I HATE YOU!")
 	if player.is_set("chose_miku"):
 		narrator.say("As Yumi runs away you feel the presence of someone behind you.")

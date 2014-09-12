@@ -19,7 +19,7 @@ public class Command implements Tagged {
     protected String from = "";
     protected Boolean blocking = true;
     private String command = "";
-    private ArrayList<String> args = new ArrayList();
+    private ArrayList<String> args = new ArrayList<>();
     private Boolean removed = false;
     
     public String getFrom() {

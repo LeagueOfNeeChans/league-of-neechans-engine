@@ -16,8 +16,8 @@ import com.trinary.vnjy.se.StringFormatter;
  */
 public class Actor {
     protected String name = "";
-    protected ArrayList<String> switches = new ArrayList();
-    protected ArrayList<String> inventory = new ArrayList();
+    protected ArrayList<String> switches = new ArrayList<>();
+    protected ArrayList<String> inventory = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -52,11 +52,11 @@ public class Actor {
     }
     
     public void say(String dialogue) {
-        ScriptEngine.addCommand("gfx.actor.say", name, StringFormatter.format(dialogue));
+        ScriptEngine.addCommand("ui.actor.say", name, StringFormatter.format(dialogue));
     }
     
     public void change(String mood) {
-        ScriptEngine.addCommand("gfx.actor.change", name, mood);
+        ScriptEngine.addCommand("ui.actor.change", name, mood);
     }
     
     public Actor(String name) {

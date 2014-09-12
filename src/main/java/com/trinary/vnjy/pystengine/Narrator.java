@@ -14,7 +14,7 @@ import com.trinary.vnjy.se.ScriptEngine;
  */
 public class Narrator extends Actor {
     public void say(String dialogue) {
-        ScriptEngine.addCommand("gfx.narrator.say", name, dialogue);
+        ScriptEngine.addCommand("ui.narrator.say", name, dialogue);
     }
     
     public Narrator() {

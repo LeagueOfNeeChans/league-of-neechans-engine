@@ -28,14 +28,6 @@ public abstract class TaggedThread extends Thread {
         return PystRouter.peekCommand(getTag());
     }
     
-    protected Command popIoQueue() {
-        return PystRouter.popIoCommand(getTag());
-    }
-    
-    protected Command peekIoQueue() {
-        return PystRouter.peekIoCommand(getTag());
-    }
-    
     protected void pushQueue(Command command) {
         PystRouter.routeCommand(command);
     }
@@ -53,23 +45,6 @@ public abstract class TaggedThread extends Thread {
     @Override 
     public void run() {
         while (running) {
-            // Peek the i/o queue
-            Command ioCommand = peekIoQueue();
-            
-            // Process io
-            if (ioCommand != null) {
-                //System.out.println("PROCESSING I/O COMMAND");
-                if (ioCommand.isBlocking()) {
-                    processIo(ioCommand);
-                    popIoQueue();
-                } else {
-                    popIoQueue();
-                    processIo(ioCommand);
-                }
-                
-                continue;
-            }
-            
             // Peek the command queue
             Command command = peekQueue();
             
@@ -86,9 +61,11 @@ public abstract class TaggedThread extends Thread {
             // Process command.
             //System.out.println("PROCESSING COMMAND");
             if (command.isBlocking()) {
+            	System.out.println("BLOCKING!");
                 processCommand(command);
                 popQueue();
             } else {
+            	System.out.println("NONBLOCKING");
                 popQueue();
                 processCommand(command);
             }
