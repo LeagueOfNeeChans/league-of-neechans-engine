@@ -3,7 +3,7 @@ def start():
 	
 def scene1():
 	scene.move("classroom")
-	narrator.say("You see flowers on the table")
+	narrator.say("You see a bouquet of <span color='#FF0000'>roses</span> on the table")
 	engine.choice("Take the flowers!", "scene2")
 	engine.choice("Hmmm...better not...", "scene3")
 	return "_wait"
