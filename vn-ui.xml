@@ -16,6 +16,7 @@
     			<width>100%</width>
     			<height>100%</height>
     		</dimensions>
+    		<resource>_black</resource>
     		<zIndex>0</zIndex>
     	</layout>
         <layout id="textBox">
