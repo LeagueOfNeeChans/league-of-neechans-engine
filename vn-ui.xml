@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<layout id="container">
+    <type>com.trinary.ui.elements.ContainerElement</type>
+    <location>
+        <top>0px</top>
+        <left>0px</left>
+    </location>
+    <dimensions>
+        <width>800px</width>
+        <height>600px</height>
+    </dimensions>
+    <children>
+    	<layout id="scene">
+    		<type>com.trinary.ui.elements.AnimatedElement</type>
+    		<dimensions>
+    			<width>100%</width>
+    			<height>100%</height>
+    		</dimensions>
+    		<zIndex>0</zIndex>
+    	</layout>
+        <layout id="textBox">
+            <type>com.trinary.ui.elements.FormattedTextElement</type>
+            <location>
+                <bottom>90%</bottom>
+            </location>
+            <dimensions>
+                <width>80%</width>
+                <height>30%</height>
+            </dimensions>
+            <margins>
+                <x>20px</x>
+                <y>20px</y>
+            </margins>
+            <alignment>
+            	<x>center</x>
+            </alignment>
+            <resource>vn.skin.textbox</resource>
+            <zIndex>5</zIndex>
+			<transparency>75%</transparency>
+        </layout>
+        <layout id="curtain">
+        	<type>com.trinary.ui.elements.ResourceElement</type>
+        	<dimensions>
+        		<width>100%</width>
+        		<height>100%</height>
+        	</dimensions>
+        	<resource>_black</resource>
+        	<zIndex>10</zIndex>
+        	<transparency>0%</transparency>
+        </layout>
+        <layout id="choiceBox">
+            <type>com.trinary.ui.elements.ChoiceBox</type>
+            <location>
+                <top>0px</top>
+                <left>0px</left>
+            </location>
+            <dimensions>
+                <width>60%</width>
+                <height>60%</height>
+            </dimensions>
+            <margins>
+                <x>20px</x>
+                <y>40px</y>
+            </margins>
+            <alignment>
+            	<x>center</x>
+            	<y>center</y>
+            </alignment>
+            <resource>choice-modal</resource>
+            <resource>vn.skin.textbox</resource>
+            <zIndex>9999</zIndex>
+            <transparency>0%</transparency>
+        </layout>
+    </children>
+</layout>
