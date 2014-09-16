@@ -18,12 +18,6 @@ import com.trinary.vnjy.se.Command;
  */
 public class UIThread extends TaggedThread {
 	protected UICore core = new UICore();
-	protected Thread coreThread = new Thread() {
-		@Override
-		public void run() {
-			core.mainLoop();
-		}
-	};
 	
 	public UIThread() {
 		core.setCallback(new EventCallback() {
@@ -34,8 +28,6 @@ public class UIThread extends TaggedThread {
                 PystRouter.routeIoCommand(c);
 			}
 		});
-		
-		coreThread.start();
 	}
 	
     @Override
@@ -97,7 +89,6 @@ public class UIThread extends TaggedThread {
 	@Override
 	public void terminate() {
 		core.stop();
-		coreThread.stop();
 		super.terminate();
 	}
 }
