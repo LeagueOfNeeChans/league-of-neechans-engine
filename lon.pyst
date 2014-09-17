@@ -76,4 +76,7 @@ def kiss_yumi():
 def put_it_in():
 	yumi.change("angry")
 	yumi.say("I AM GOING TO END YOU!")
+	scene.remove_actor(yumi)
+	scene.move("hell")
+	narrator.say("You died and went to hell...maybe putting it in wasn't such a good idea...hey look Obama's here too.")
 	return "_end"
