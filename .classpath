@@ -23,6 +23,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/vn-ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/league-of-nee-chans-ui"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/trinary-ui"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
