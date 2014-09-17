@@ -21,6 +21,10 @@ public class Scene {
         ScriptEngine.addCommand("ui.scene.add", actor.getName(), side);
     }
     
+    public void remove_actor(Actor actor) {
+        ScriptEngine.addCommand("ui.scene.remove", actor.getName(), "");
+    }
+    
     public void display_image(String resource) {
         ScriptEngine.addCommand("ui.scene.display", resource, "");
     }

@@ -6,15 +6,18 @@
 
 package com.trinary.vnjy.se;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
+
 import org.python.core.PyFunction;
 import org.python.core.PyString;
 import org.python.core.PyStringMap;
 import org.python.core.PyTuple;
 import org.python.util.PythonInterpreter;
-
 
 /**
  *
@@ -37,9 +40,6 @@ public class ScriptEngine {
     public static void init(String filename) {
         // Load actors
         String player = "Guy";
-        ArrayList<String> actors = new ArrayList<>();
-        actors.add("yumi");
-        actors.add("miku");
         
         // Inject includes
         pi.exec("from com.trinary.vnjy.pystengine import *");
@@ -49,7 +49,8 @@ public class ScriptEngine {
         pi.exec("player = Player('" + player + "')");
         
         // Inject actors
-        for (String actor : actors) {
+        for (String actor : scanForActors()) {
+        	System.out.println("ACTOR " + actor + " FOUND!");
             pi.exec(actor + " = Actor('" + actor + "')" );
         }
         
@@ -67,6 +68,25 @@ public class ScriptEngine {
         
         // Run inject
         pi.exec("ScriptEngine.inject(globals())");
+    }
+    
+    protected static Set<String> scanForActors() {
+    	Set<String> actors = new LinkedHashSet<String>();
+    	
+    	File f = new File("resources/vn/actors");
+		
+		for (File node : f.listFiles()) {
+			String file = node.getName();
+			if (node.isFile()) {
+				String filename = file.substring(0, file.lastIndexOf('.'));
+				if (filename != null && !filename.isEmpty()) {
+					String actorName = filename.split("_")[0];
+					actors.add(actorName);
+				}
+			}
+		}
+		
+		return actors;
     }
     
     public static void inject(PyStringMap functionTable) {

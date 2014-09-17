@@ -72,6 +72,8 @@ public class UIThread extends TaggedThread {
 	        case "add":
 	        	core.addActor(command.getArg(0), command.getArg(1));
 	        	break;
+	        case "remove":
+	        	core.removeActor(command.getArg(0));
 	        }
         }
         

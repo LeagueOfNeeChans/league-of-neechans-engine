@@ -6,8 +6,8 @@
         <left>0px</left>
     </location>
     <dimensions>
-        <width>800px</width>
-        <height>600px</height>
+        <width>1024px</width>
+        <height>768px</height>
     </dimensions>
     <children>
     	<layout id="scene">
@@ -29,8 +29,8 @@
                 <height>30%</height>
             </dimensions>
             <margins>
-                <x>20px</x>
-                <y>20px</y>
+                <x>30px</x>
+                <y>30px</y>
             </margins>
             <alignment>
             	<x>center</x>
@@ -60,8 +60,8 @@
                 <height>60%</height>
             </dimensions>
             <margins>
-                <x>20px</x>
-                <y>40px</y>
+                <x>30px</x>
+                <y>50px</y>
             </margins>
             <alignment>
             	<x>center</x>

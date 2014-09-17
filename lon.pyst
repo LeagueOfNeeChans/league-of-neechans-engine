@@ -23,7 +23,7 @@ def scene3():
 		yumi.change("wishful")
 		yumi.say("Oh..." + player.name + "...are those for me?")
 		engine.choice("Um...yes...I...", "confession")
-		engine.choice("No...they are for Miku.", "choose_miku")
+		engine.choice("No...they are for Cashmere.", "choose_russia")
 	else:
 		yumi.say("Would you like to go to a movie with me?")
 		engine.choice("Yes", "movie")
@@ -31,8 +31,8 @@ def scene3():
 	
 	return "_wait"
 	
-def choose_miku():
-	player.set("chose_miku")
+def choose_russia():
+	player.set("chose_russia")
 	return "sad_scene"
 	
 def movie():
@@ -40,17 +40,40 @@ def movie():
 	return "_end"
 	
 def sad_scene():
-	yumi.change("annoyed")
+	yumi.change("sad")
 	yumi.say(player.name + " I HATE YOU!")
-	if player.is_set("chose_miku"):
+	scene.remove_actor(yumi);
+	if player.is_set("chose_russia"):
+		scene.add_actor(russia, "right")
 		narrator.say("As Yumi runs away you feel the presence of someone behind you.")
-		narrator.say("You turn around and see Miku.")
-		miku.say("I heard what you said...")
-		narrator.say("With that Miku took your face in her hands and kissed you.")
-		miku.say("Don't worry, Yumi will be alright.")
+		narrator.say("You turn around and see Russia.")
+		russia.change("prideful")
+		russia.say("You made the right choice...")
+		narrator.say("With that Russia took your face in her hands and kissed you.")
+		russia.change("smiling")
+		russia.say("Don't worry, Yumi will be alright.")
+		russia.change("saluting")
+		russia.say("AHHHHH MOTHERLAND!")
 	return "_end"
 	
 def confession():
 	player.give(yumi, "flowers")
 	yumi.say("Oh " + player.name + "...I love you!")
+	engine.choice("Hug her", "hug_yumi")
+	engine.choice("Kiss her", "kiss_yumi")
+	engine.choice("Put it in", "put_it_in")
+	return "_wait"
+	
+def hug_yumi():
+	yumi.say("I'm so happy!")
+	return "_end"
+	
+def kiss_yumi():
+	yumi.change("embarrassed")
+	yumi.say("Mmmph!  What are you doing?")
+	return "_end"
+	
+def put_it_in():
+	yumi.change("angry")
+	yumi.say("I AM GOING TO END YOU!")
 	return "_end"
