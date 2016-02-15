@@ -15,7 +15,9 @@ import com.trinary.vnjy.se.ComplexCommand;
  * @author mmain
  */
 public class PystTaggedQueue extends PystQueue {
-    public Command popTaggedCommand(String tag) {
+	private static final long serialVersionUID = -1259695852619637898L;
+
+	public Command popTaggedCommand(String tag) {
         Command command = peekTaggedCommand(tag);
         
         if (command == null) {

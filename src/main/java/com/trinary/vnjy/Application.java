@@ -60,8 +60,13 @@ public class Application {
         }
         
         // Kill all threads
-        ui.terminate();
-        sfx.terminate();
-        bgm.terminate();
+        try {
+			ui.terminate();
+			sfx.terminate();
+	        bgm.terminate();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

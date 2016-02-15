@@ -6,7 +6,7 @@
         <left>0px</left>
     </location>
     <dimensions>
-        <width>1024px</width>
+        <width>1024px</width>,
         <height>768px</height>
     </dimensions>
     <children>

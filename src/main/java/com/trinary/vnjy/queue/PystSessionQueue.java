@@ -11,5 +11,5 @@ package com.trinary.vnjy.queue;
  * @author mmain
  */
 public class PystSessionQueue extends PystQueue {
-
+	private static final long serialVersionUID = -2260701380371727286L;
 }

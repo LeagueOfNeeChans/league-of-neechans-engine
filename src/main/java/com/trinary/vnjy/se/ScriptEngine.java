@@ -23,6 +23,7 @@ import org.python.util.PythonInterpreter;
  *
  * @author mmain
  */
+// TODO Change this to be non-static
 public class ScriptEngine {
     private static PyStringMap namespace;
     private static final Queue<Command> commands;
@@ -102,7 +103,7 @@ public class ScriptEngine {
     }
     
     public static void addCommand(String command, String name, String args) {
-        ArrayList<String> actual_args = new ArrayList();
+        ArrayList<String> actual_args = new ArrayList<String>();
         actual_args.add(name);
         actual_args.add(args);
         addCommand(new Command(command, actual_args));

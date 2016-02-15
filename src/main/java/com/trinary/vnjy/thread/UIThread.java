@@ -20,6 +20,7 @@ public class UIThread extends TaggedThread {
 	protected UICore core = new UICore();
 	
 	public UIThread() {
+		core.scaleUI(0.8);
 		core.setCallback(new EventCallback() {
 			@Override
 			public void run(String id) {
@@ -89,7 +90,7 @@ public class UIThread extends TaggedThread {
     }
 
 	@Override
-	public void terminate() {
+	public void terminate() throws InterruptedException {
 		core.stop();
 		super.terminate();
 	}

@@ -8,6 +8,7 @@ package com.trinary.vnjy.thread;
 
 import com.trinary.vnjy.PystRouter;
 import com.trinary.vnjy.se.Command;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,9 +73,9 @@ public abstract class TaggedThread extends Thread {
         }
     }
     
-    public void terminate() {
+    public void terminate() throws InterruptedException {
         running = false;
-        stop();
+        join();
     }
     
     public abstract void processIo(Command command);
